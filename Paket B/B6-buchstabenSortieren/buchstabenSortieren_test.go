@@ -1,0 +1,120 @@
+package main
+
+import (
+	"testing"
+)
+
+func TestBuchstabenSortieren(t *testing.T) {
+	// Anmerkung:
+	// wir verwenden hier ein Array für die Wortliste, aus der ein
+	// Wort zufällig ausgewählt wird. Arrays wurden zum Zeitpunkt
+	// der Aufgabenstellung noch nicht im Kurs eingeführt.
+	tests := [...]struct {
+		s    string
+		want string
+	}{
+		{"Tieflieger", "eeefgiilrt"},
+		{"Golang", "agglno"},
+		{"Donaudampfschiffahrtsgesellschaft", "aaaaccddeeffffghhhillmnoprssssttu"},
+		{"Abbruchbedingung", "abbbcdegghinnruu"},
+		{"Abschlusszeichen", "abcceehhilnsssuz"},
+		{"Additionsoperator", "aaddeiinoooprrstt"},
+		{"Adresse", "adeerss"},
+		{"Adressoperator", "aadeeooprrrsst"},
+		{"Anweisung", "aeginnsuw"},
+		{"Argument", "aegmnrtu"},
+		{"Array", "aarry"},
+		{"Ausdruck", "acdkrsuu"},
+		{"Auswertung", "aegnrstuuw"},
+		{"Auswertungsreihenfolge", "aeeeefgghilnnorrsstuuw"},
+		{"Bezeichner", "bceeehinrz"},
+		{"Block", "bcklo"},
+		{"Blockkommentar", "abcekklmmnoort"},
+		{"Boolean", "abelnoo"},
+		{"Datentyp", "adenptty"},
+		{"Deklaration", "aadeiklnort"},
+		{"Deklarationsoperator", "aaadeeiklnoooprrrstt"},
+		{"Dereferenzierung", "deeeeefginnrrruz"},
+		{"Dereferenzierungsoperator", "adeeeeeefginnooprrrrrstuz"},
+		{"Dezimalzahl", "aadehillmzz"},
+		{"Divisionsoperator", "adeiiinoooprrsstv"},
+		{"Ellipse", "eeillps"},
+		{"Endlosschleife", "cdeeefhillnoss"},
+		{"Ergebnistyp", "beeginprsty"},
+		{"Exponent", "eennoptx"},
+		{"Flag", "afgl"},
+		{"Funktionsdeklaration", "aadefiikklnnnoorsttu"},
+		{"Funktionsrumpf", "ffikmnnoprstuu"},
+		{"Funktionsaufruf", "afffiknnorstuuu"},
+		{"Funktionsdeklaration", "aadefiikklnnnoorsttu"},
+		{"Genauigkeit", "aeeggiikntu"},
+		{"Gleichheitsoperator", "aceeeghhiilooprrstt"},
+		{"Gleitkommazahlen", "aaeeghikllmmnotz"},
+		{"Hexadezimalzahl", "aaadeehhillmxzz"},
+		{"Index", "deinx"},
+		{"Infixnotation", "afiiinnnoottx"},
+		{"Klammerung", "aegklmmnru"},
+		{"Konkatenationsoperator", "aaaeeikknnnooooprrsttt"},
+		{"Konstante", "aeknnostt"},
+		{"Konstantendeklaration", "aaadeeikklnnnnoorsttt"},
+		{"Laufvariable", "aaabefillruv"},
+		{"Lebenszeit", "beeeilnstz"},
+		{"Leerraum", "aeelmrru"},
+		{"Mantisse", "aeimnsst"},
+		{"Matrix", "aimrtx"},
+		{"Mindestbreite", "bdeeeiimnrstt"},
+		{"Multiplikationsoperator", "aaeiiikllmnooopprrstttu"},
+		{"Nachkommastellen", "aaceehkllmmnnost"},
+		{"Negationsoperator", "aaeeginnoooprrstt"},
+		{"Normalisierung", "aegiilmnnorrsu"},
+		{"Oktalzahl", "aahkllotz"},
+		{"Operator", "aeooprrt"},
+		{"Paket", "aekpt"},
+		{"Paketklausel", "aaeekkllpstu"},
+		{"Parameter", "aaeemprrt"},
+		{"Parameterdeklaration", "aaaadeeeiklmnoprrrtt"},
+		{"Programmelemente", "aeeeeglmmmnoprrt"},
+		{"Referenzen", "eeeefnnrrz"},
+		{"Rundungsfehler", "deefghlnnrrsuu"},
+		{"Schleife", "ceefhils"},
+		{"Schleifenbedingung", "bcdeeefgghiilnnnsu"},
+		{"Schleifendurchlauf", "accdeeffhhillnrsuu"},
+		{"Schleifenrumpf", "ceeffhilmnprsu"},
+		{"Seiteneffekt", "eeeeffiknstt"},
+		{"Semikolon", "eiklmnoos"},
+		{"Separatorzeichen", "aaceeehinoprrstz"},
+		{"Sichtbarkeit", "abcehiikrstt"},
+		{"Signatur", "aginrstu"},
+		{"Speicheradresse", "acdeeeehiprrsss"},
+		{"Speicherleck", "cceeehiklprs"},
+		{"Standardformat", "aaaddfmnorrstt"},
+		{"Standardtyp", "aaddnprstty"},
+		{"String", "ginrst"},
+		{"Substring", "bginrsstu"},
+		{"Subtraktionsoperator", "aabeiknoooprrrsstttu"},
+		{"Teilausdruck", "acdeiklrstuu"},
+		{"Typanpassung", "aagnnppsstuy"},
+		{"Typkonvertierung", "eegiknnoprrttuvy"},
+		{"Ungleichheitsoperator", "aceeeghhiilnooprrsttu"},
+		{"Variable", "aabeilrv"},
+		{"Variablendeklaration", "aaaabdeeiikllnnorrtv"},
+		{"Verben", "beenrv"},
+		{"Vergleichsoperatoren", "aceeeeghilnooprrrstv"},
+		{"Vorzeichen", "ceehinorvz"},
+		{"Wert", "ertw"},
+		{"whitespace", "aceehipstw"},
+		{"Wiederholungsanweisung", "adeeegghiilnnnorssuuww"},
+		{"Zeichenkette", "ceeeehiknttz"},
+		{"Zeiger", "eegirz"},
+		{"Zeilenkommentar", "aeeeiklmmnnortz"},
+		{"Zuweisung", "eginsuuwz"},
+		{"Zuweisungsoperator", "aeeginooprrsstuuwz"},
+		{"Zweierkomplement", "eeeeiklmmnoprtwz"},
+	}
+	for _, tt := range tests {
+		got := buchstabenSortieren(tt.s)
+		if got != tt.want {
+			t.Errorf("buchstabenSortieren(%v) = %v, want %v", tt.s, got, tt.want)
+		}
+	}
+}
