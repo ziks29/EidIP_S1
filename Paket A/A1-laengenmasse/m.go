@@ -4,8 +4,8 @@ import (
 	"fmt"
 )
 
-func main() {
-	var meter float64
+func m() {
+	var meter float64 // Eingabe der Länge in Metern
 	fmt.Print("Geben Sie eine Länge in Metern ein: ")
 	fmt.Scanln(&meter)
 	fuss := meter * 3.28084
@@ -17,9 +17,9 @@ func main() {
 
 	fmt.Printf("Länge in Fuß: %.2f ft\n", fuss)
 	fmt.Printf("Länge in Kilometern: %.2f km\n", km)
-	fmt.Printf("Länge in Millimetern: %.3e mm\n", mm)
+	fmt.Printf("Länge in Millimetern: %.2f mm\n", mm)
 	fmt.Printf("Länge in Zoll: %.2f in\n", zoll)
-	fmt.Printf("Länge in Seemeilen: %.3f sm\n", seemeile)
+	fmt.Printf("Länge in Seemeilen: %.6f sm\n", seemeile)
 	fmt.Printf("Länge in Lichtjahren: %.3g Lj\n", lichtjahr)
 
 }
