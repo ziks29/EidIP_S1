@@ -15,7 +15,7 @@ type listenElement struct {
 type doppeltVerketteteListe struct {
 	anfang, ende *listenElement
 }
-	
+
 // Gibt alle Werte der Liste von Anfang bis Ende aus.
 func listeAusgeben(liste *doppeltVerketteteListe) {
 	element := liste.anfang
