@@ -1,17 +1,13 @@
 package main
 
-// istPerfekt bestimmt, ob zahl eine perfekte Zahl ist.
-// zahl muss eine natürliche Zahl sein.
 func istPerfekt(zahl int) bool {
-	sum := 0
+
+	var summe int
 	for i := 1; i < zahl; i++ {
 		if zahl%i == 0 {
-			sum += i
+			summe += i // addiere alle teiler von zahl
 		}
 	}
-	if sum == zahl {
-		return true
-	}
+	return summe == zahl // wenn die summe der teiler gleich der zahl ist, ist sie perfekt
 
-	return false
 }

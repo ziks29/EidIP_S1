@@ -4,6 +4,14 @@ import (
 	"fmt"
 )
 
+// Hilfsfunktion für Tests
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 // Verbund-Typ für einen binären Knoten
 type knoten struct {
 	wert          int
@@ -90,8 +98,17 @@ func summeDesBaums(wurzel *knoten) int {
 
 // Liefert die Höhe des Baums zurück.
 func höheDesBaums(wurzel *knoten) int {
-	// todo: Implementieren Sie den Rumpf der Funktion
-	return -1
+	if wurzel == nil {
+		return 0
+	} else {
+		höheLinks := höheDesBaums(wurzel.links)
+		höheRechts := höheDesBaums(wurzel.rechts)
+		if höheLinks > höheRechts {
+			return höheLinks + 1
+		} else {
+			return höheRechts + 1
+		}
+	}
 }
 
 // Liefert einen Zeiger auf den Knoten zurück,
@@ -99,8 +116,11 @@ func höheDesBaums(wurzel *knoten) int {
 // wurzel muss die Wurzel eines Suchbaums referenzieren,
 // die bereits einen Wert enthält (d.h. wurzel darf nicht nil sein).
 func kleinsterKnoten(wurzel *knoten) *knoten {
-	// todo: Implementieren Sie den Rumpf der Funktion
-	return nil
+	if wurzel.links != nil {
+		return kleinsterKnoten(wurzel.links)
+	} else {
+		return wurzel
+	}
 }
 
 // Sucht in einem Suchbaum nach dem Wert suchwert
@@ -110,11 +130,26 @@ func kleinsterKnoten(wurzel *knoten) *knoten {
 // Wenn suchwert im Suchbaum enthalten ist, wird die Höhe
 // des entsprechenden Knotens zurückgeliefert, ansonsten -1.
 func höheDesWerts(wurzel *knoten, suchwert int, höhe int) int {
-	// todo: Implementieren Sie den Rumpf der Funktion
-	return -1
+	if wurzel == nil {
+		return -1
+	}
+
+	if wurzel.wert == suchwert {
+		return höhe
+	}
+
+	if suchwert < wurzel.wert {
+		return höheDesWerts(wurzel.links, suchwert, höhe+1)
+	} else {
+		return höheDesWerts(wurzel.rechts, suchwert, höhe+1)
+	}
 }
 
 // Erhöht jeden Wert im Baum um den Wert 1.
 func inkrementiereAlleWerte(wurzel *knoten) {
-	// todo: Implementieren Sie den Rumpf der Funktion
+	if wurzel != nil {
+		wurzel.wert = wurzel.wert + 1
+		inkrementiereAlleWerte(wurzel.links)
+		inkrementiereAlleWerte(wurzel.rechts)
+	}
 }
